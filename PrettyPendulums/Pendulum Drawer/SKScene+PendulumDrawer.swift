@@ -6,6 +6,55 @@
 //
 
 import SpriteKit
+import DylKit
+
+extension SKScene: PendulumDrawer {
+    func makePendulumView(_ settings: PendulumSettings) -> UIView {
+        backgroundColor = .white
+        blendMode = .multiply
+        
+        drawPendulum(settings)
+        
+        let skView = SKView(frame: .init(origin: .zero, size: size))
+        skView.presentScene(scene)
+        return skView
+    }
+    
+    func resetForRedraw() {
+        removeAllChildren()
+    }
+    
+    func drawPendulum(_ settings: PendulumSettings) {
+        let count = settings.numPendulums
+        let sections = settings.numSections
+        let offset = settings.offset
+        let offsetDelta = settings.offsetDelta
+        let lineThickness = settings.lineThickness
+        let lineAlpha = settings.lineAlpha
+        let gravity = settings.gravity
+        
+        physicsWorld.gravity = .init(dx: 0, dy: gravity)
+        
+        (0 ..< count).forEach { index in
+            let index = CGFloat(index)
+            let count = CGFloat(count)
+            let pendulum = SKShapeNode(
+                pendulumWithSections: sections,
+                length: self.size.height / 2,
+                color: .init(
+                    hue: index / CGFloat(count - 1),
+                    saturation: 1, brightness: 1, alpha: lineAlpha
+                ),
+                thickness: CGFloat(lineThickness),
+                offset: offset,
+                offsetDelta: (index - count / 2.0) * offsetDelta,
+                in: self
+            )
+        }
+    }
+}
+
+extension SKScene: Funcable { }
 
 extension SKShapeNode {
     convenience init(circleOfRadius radius: CGFloat, backgroundColor: UIColor, in scene: SKScene? = nil) {
@@ -55,14 +104,14 @@ extension SKShapeNode {
         anchor.scene!.physicsWorld.add(pin)
     }
     
-    convenience init(pendulumWithSections sections: Int, length: CGFloat, color: UIColor, thickness: CGFloat, offset: CGFloat, in scene: SKScene) {
+    convenience init(pendulumWithSections sections: Int, length: CGFloat, color: UIColor, thickness: CGFloat, offset: CGFloat, offsetDelta: CGFloat, in scene: SKScene) {
         let ballRadius: CGFloat = thickness / 2.0
         let lineThickness: CGFloat = thickness
         
         self.init(circleOfRadius: ballRadius, backgroundColor: .clear, in: scene)
         self.position.x = scene.size.width / 2
         self.position.y = scene.size.height * (1.0 / 2.0)
-        self.zRotation = .pi / 2.0
+        self.zRotation = .pi / 2.0 + offset
         self.physicsBody?.isDynamic = false
         self.physicsBody?.collisionBitMask = 0
         self.physicsBody!.angularDamping = 0
@@ -84,7 +133,7 @@ extension SKShapeNode {
             
             weight.physicsBody!.collisionBitMask = 0;
             
-            weight.zRotation += offset
+            weight.zRotation += offsetDelta
             
             lastWeight = weight
         }

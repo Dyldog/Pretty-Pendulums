@@ -15,6 +15,7 @@ enum SettingsDefaults: String, DefaultsKey {
     case offsetDelta
     case lineThickness
     case alpha
+    case gravity
 }
 
 class SettingsView: UIView, UITextFieldDelegate {
@@ -24,7 +25,19 @@ class SettingsView: UIView, UITextFieldDelegate {
     @UserDefaultable(key: SettingsDefaults.offsetDelta) private(set) var offsetDelta: Double = 0.0001
     @UserDefaultable(key: SettingsDefaults.lineThickness) private(set) var lineThickness: Int = 5
     @UserDefaultable(key: SettingsDefaults.alpha) private(set) var lineAlpha: Double = 0.5
+    @UserDefaultable(key: SettingsDefaults.gravity) private(set) var gravity: Double = -5
     
+    var settings: PendulumSettings {
+        .init(
+            numPendulums: numPendulums,
+            numSections: numSections,
+            offset: offset,
+            offsetDelta: offsetDelta,
+            lineThickness: lineThickness,
+            lineAlpha: lineAlpha,
+            gravity: gravity
+        )
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -51,6 +64,9 @@ class SettingsView: UIView, UITextFieldDelegate {
             }, onUpdate: { [weak self] in
                 self?.lineAlpha = $0
             }),
+            row(title: "Gravity", value: gravity, formatter: Double.init, onUpdate: { [weak self] in
+                self?.gravity = $0
+            }),
             
         ])
         .embedded(in: self, top: 14, leading: 14, trailing: 14, bottomPriority: .defaultHigh)
@@ -75,20 +91,4 @@ class SettingsView: UIView, UITextFieldDelegate {
     }
 }
 
-infix operator ^: AdditionPrecedence
-
-protocol Funcable { }
-
-extension Funcable {
-    func set<T>(_ keypath: ReferenceWritableKeyPath<Self, T>, _ value: T) -> Self {
-        self[keyPath: keypath] = value
-        return self
-    }
-    
-    static func ^<T>(lhs: Self, rhs: (keypath: ReferenceWritableKeyPath<Self, T>, value: T)) -> Self {
-        lhs.set(rhs.keypath, rhs.value)
-    }
-}
-
-extension UIView: Funcable { }
 

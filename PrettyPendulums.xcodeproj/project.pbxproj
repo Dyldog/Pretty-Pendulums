@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		FC456B542C70F47A0054821A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC456B532C70F47A0054821A /* SettingsView.swift */; };
-		FC526A302C71CA5300962F87 /* SKShapeNode+Pendulum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC526A2F2C71CA5300962F87 /* SKShapeNode+Pendulum.swift */; };
+		FC526A302C71CA5300962F87 /* SKScene+PendulumDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC526A2F2C71CA5300962F87 /* SKScene+PendulumDrawer.swift */; };
+		FC526A332C71E67000962F87 /* PendulumDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC526A322C71E67000962F87 /* PendulumDrawer.swift */; };
+		FC526A352C71E69B00962F87 /* PendulumSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC526A342C71E69B00962F87 /* PendulumSettings.swift */; };
+		FC526A372C71E80F00962F87 /* MinimalExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC526A362C71E80F00962F87 /* MinimalExampleViewController.swift */; };
 		FC5A73362C70AEC5008C0633 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A73352C70AEC5008C0633 /* AppDelegate.swift */; };
 		FC5A73382C70AEC5008C0633 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A73372C70AEC5008C0633 /* SceneDelegate.swift */; };
 		FC5A733A2C70AEC5008C0633 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A73392C70AEC5008C0633 /* ViewController.swift */; };
@@ -40,7 +43,10 @@
 
 /* Begin PBXFileReference section */
 		FC456B532C70F47A0054821A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		FC526A2F2C71CA5300962F87 /* SKShapeNode+Pendulum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKShapeNode+Pendulum.swift"; sourceTree = "<group>"; };
+		FC526A2F2C71CA5300962F87 /* SKScene+PendulumDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+PendulumDrawer.swift"; sourceTree = "<group>"; };
+		FC526A322C71E67000962F87 /* PendulumDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendulumDrawer.swift; sourceTree = "<group>"; };
+		FC526A342C71E69B00962F87 /* PendulumSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendulumSettings.swift; sourceTree = "<group>"; };
+		FC526A362C71E80F00962F87 /* MinimalExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimalExampleViewController.swift; sourceTree = "<group>"; };
 		FC5A73322C70AEC5008C0633 /* PrettyPendulums.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrettyPendulums.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC5A73352C70AEC5008C0633 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC5A73372C70AEC5008C0633 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +88,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC526A312C71E66400962F87 /* Pendulum Drawer */ = {
+			isa = PBXGroup;
+			children = (
+				FC526A322C71E67000962F87 /* PendulumDrawer.swift */,
+				FC526A342C71E69B00962F87 /* PendulumSettings.swift */,
+				FC526A2F2C71CA5300962F87 /* SKScene+PendulumDrawer.swift */,
+			);
+			path = "Pendulum Drawer";
+			sourceTree = "<group>";
+		};
 		FC5A73292C70AEC4008C0633 = {
 			isa = PBXGroup;
 			children = (
@@ -108,8 +124,9 @@
 				FC5A73352C70AEC5008C0633 /* AppDelegate.swift */,
 				FC5A73372C70AEC5008C0633 /* SceneDelegate.swift */,
 				FC5A73392C70AEC5008C0633 /* ViewController.swift */,
+				FC526A362C71E80F00962F87 /* MinimalExampleViewController.swift */,
 				FC456B532C70F47A0054821A /* SettingsView.swift */,
-				FC526A2F2C71CA5300962F87 /* SKShapeNode+Pendulum.swift */,
+				FC526A312C71E66400962F87 /* Pendulum Drawer */,
 				FC5A733B2C70AEC5008C0633 /* Main.storyboard */,
 				FC5A733E2C70AEC9008C0633 /* Assets.xcassets */,
 				FC5A73402C70AEC9008C0633 /* LaunchScreen.storyboard */,
@@ -272,10 +289,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC526A302C71CA5300962F87 /* SKShapeNode+Pendulum.swift in Sources */,
+				FC526A302C71CA5300962F87 /* SKScene+PendulumDrawer.swift in Sources */,
 				FC5A733A2C70AEC5008C0633 /* ViewController.swift in Sources */,
+				FC526A352C71E69B00962F87 /* PendulumSettings.swift in Sources */,
+				FC526A372C71E80F00962F87 /* MinimalExampleViewController.swift in Sources */,
 				FC456B542C70F47A0054821A /* SettingsView.swift in Sources */,
 				FC5A73362C70AEC5008C0633 /* AppDelegate.swift in Sources */,
+				FC526A332C71E67000962F87 /* PendulumDrawer.swift in Sources */,
 				FC5A73382C70AEC5008C0633 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
