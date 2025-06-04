@@ -33,7 +33,13 @@ extension SKScene: PendulumDrawer {
         let lineAlpha = settings.lineAlpha
         let gravity = settings.gravity
         
-        physicsWorld.gravity = .init(dx: 0, dy: gravity)
+//        physicsWorld.gravity = .init(dx: 0, dy: gravity)
+        physicsWorld.gravity = .init(dx: 0, dy: 0)
+        
+        let gravityVector = vector_float3(0,1,0);
+        let gravityNode = SKFieldNode.linearGravityField(withVector: gravityVector)
+        gravityNode.strength = Float(gravity)
+        addChild(gravityNode)
         
         (0 ..< count).forEach { index in
             let index = CGFloat(index)
